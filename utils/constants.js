@@ -1,32 +1,26 @@
 export const resources = [
     { 
       name:'Wood',
-      value :  1,
       availableCount: 4
     },
     { 
       name:'Brick',
-      value :  2,
       availableCount: 3
     },
     { 
       name:'Hay',
-      value :  3,
       availableCount: 4
     },
     { 
       name:'Ore',
-      value :  4,
       availableCount: 3
     },
     {
       name: 'Sheep',
-      value: 5,
       availableCount: 4
     },
     {
       name: 'Desert',
-      value: 0,
       availableCount: 1
     }
 ];

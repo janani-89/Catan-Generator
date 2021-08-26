@@ -28,7 +28,7 @@ const Generator = ({shufflePattern}) => {
     container:{
       marginTop:50,
       flex:2,
-      backgroundColor: 'white'
+      backgroundColor: '#f5fffa'
   },
   })
   

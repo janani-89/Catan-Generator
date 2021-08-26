@@ -15,7 +15,7 @@ import {
   Text,
   useColorScheme,
   View,
-  Button,
+  Pressable,
   Alert
 } from 'react-native';
 import Generator from './components/Generator';
@@ -31,7 +31,7 @@ const App= () => {
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-    flex: 1
+    flex: 1,
   };
 
   const generatePattern = () => {
@@ -44,52 +44,57 @@ const App= () => {
   }, [shufflePattern])
 
   return (
-    <SafeAreaView style={backgroundStyle}>
-      {/* <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} /> */}
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={styles.base}>
+
         <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
+          style={styles.base}>
             <Text style={[styles.highlight, styles.title]}> Catan Generator</Text>
-            <Text> Please click Generate Button to create Catan Resource Placements</Text> 
-            <Button title="Generate"
+            <Text style={styles.description}> Please click Generate Button to create Catan Resource Placements</Text> 
+            <Pressable 
               onPress={() => generatePattern()}
-            />
+              style={styles.btn}
+            >
+              <Text style={styles.btnText}> Generate</Text>
+            </Pressable>
             {showGenerator && <Generator shufflePattern={shufflePattern} />}
         </View>
-      </ScrollView>
-    </SafeAreaView>
+
   );
 };
 
 const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
+
   highlight: {
     fontWeight: '700',
   },
   title:{
-    alignItems: 'center',
-    justifyContent: 'center',
+    textAlign: 'center',
     marginTop: 20,
-    fontSize: 16
+    fontSize: 20,
+    fontWeight: '600',
+  },
+  description: {
+    fontSize: 16,
+    padding: 10,
   },
   base: {
     flex:1,
+    backgroundColor: '#f5fffa'
+  },
+  btn: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding:10,
+    borderRadius: 4,
+    elevation: 3,
+    backgroundColor: 'blue',
+    margin: 10
+  },
+  btnText: {
+    fontSize: 18,
+    lineHeight: 21,
+    fontWeight: 'bold',
+    letterSpacing: 0.25,
+    color: 'white',
   }
 });
 
