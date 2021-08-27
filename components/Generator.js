@@ -3,13 +3,13 @@ import { View, StyleSheet } from 'react-native';
 import { resources, shuffle, resourceGenerator, numbers } from '../utils/constants';
 import ResourceImage from './ResourceImage';
 
-const Generator = ({shufflePattern}) => {
+const Generator = ({reload}) => {
     const [shuffledResource, setShuffleResource ] = useState([]);
     const [numberPool, setNumberPool] = useState([]);
 
     useEffect(() => {
-      console.log(shufflePattern,'shuffle pattern')
-      if(shufflePattern) {
+      console.log(reload,'reload')
+      if(reload) {
         console.log('called')
         const imagePool = resourceGenerator(resources);
         const shuffledResource = shuffle(imagePool);
@@ -18,11 +18,11 @@ const Generator = ({shufflePattern}) => {
         setNumberPool(numberPool);
         setShuffleResource(shuffledResource);
       }
-    }, [shufflePattern]);
+    }, [reload]);
 
     return(
       <View style={styles.container}>
-        <ResourceImage shuffledResource={shuffledResource} numberPool={numberPool}/>
+        <ResourceImage shuffledResource={shuffledResource} numberPool={numberPool} reload={reload}/>
       </View>
     )
   }

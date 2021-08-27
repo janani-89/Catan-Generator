@@ -8,15 +8,12 @@
 
 import React, { useEffect, useState } from 'react';
 import {
-  SafeAreaView,
-  ScrollView,
   StatusBar,
   StyleSheet,
   Text,
   useColorScheme,
   View,
   Pressable,
-  Alert
 } from 'react-native';
 import Generator from './components/Generator';
 
@@ -26,7 +23,7 @@ import {
 
 const App= () => {
   const isDarkMode = useColorScheme() === 'dark';
-  const [shufflePattern, setShufflePattern] = useState(false);
+  const [reload, setReload] = useState(false);
   const [showGenerator, setShowGenerator] = useState(false);
 
   const backgroundStyle = {
@@ -35,13 +32,13 @@ const App= () => {
   };
 
   const generatePattern = () => {
-    setShufflePattern(true);
+    setReload(true);
     setShowGenerator(true);
   }
 
   useEffect(() => {
-    if(shufflePattern) setShufflePattern(false);
-  }, [shufflePattern])
+    if(reload) setReload(false);
+  }, [reload])
 
   return (
 
@@ -55,7 +52,7 @@ const App= () => {
             >
               <Text style={styles.btnText}> Generate</Text>
             </Pressable>
-            {showGenerator && <Generator shufflePattern={shufflePattern} />}
+            {showGenerator && <Generator reload={reload} />}
         </View>
 
   );

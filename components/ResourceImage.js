@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { View, Text, Image, StyleSheet, ImageBackground, ActivityIndicator } from 'react-native';
 // import Icon from 'react-native-vector-icons/Entypo';
 
-const ResourceImage = ({shuffledResource, numberPool}) => {
-
+const ResourceImage = ({shuffledResource, numberPool, reload}) => {
+  
   const resources = shuffledResource && shuffledResource.filter((resource, i) => resource != "Desert");
   //const numbers = numberPool.map(num => <Text>{num}</Text>);
   const imageSrc = (resource) => {
