@@ -65,3 +65,56 @@ export const resourceGenerator = (data) => {
   });
   return resourcePool;
 }
+
+// export const numbers = [
+//   { 
+//     name:'2',
+//     availableCount: 1,
+//     dots: 1
+//   },
+//   { 
+//       name:'3',
+//       availableCount: 2,
+//       dots: 2
+//   },
+//   { 
+//       name:'4',
+//       availableCount: 2,
+//       dots: 3
+//   },
+//   { 
+//       name:'5',
+//       availableCount: 2,
+//       dots: 4
+//   },
+//   {
+//       name: '6',
+//       availableCount: 2,
+//       dots: 5
+//   },
+//   {
+//       name: '8',
+//       availableCount: 2,
+//       dots: 5
+//   },
+//   { 
+//       name:'9',
+//       availableCount: 2,
+//       dots: 4
+//   },
+//   { 
+//       name:'10',
+//       availableCount: 2,
+//       dots: 3
+//   },
+//   { 
+//       name:'11',
+//       availableCount: 2,
+//       dots: 2
+//   },
+//   { 
+//       name:'12',
+//       availableCount: 1,
+//       dots: 1
+//   },
+// ];

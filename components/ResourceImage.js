@@ -1,5 +1,5 @@
-import React from 'react'
-import { View, Text, Image, StyleSheet, ImageBackground } from 'react-native';
+import React, { useState } from 'react'
+import { View, Text, Image, StyleSheet, ImageBackground, ActivityIndicator } from 'react-native';
 // import Icon from 'react-native-vector-icons/Entypo';
 
 const ResourceImage = ({shuffledResource, numberPool}) => {
@@ -38,22 +38,24 @@ const ResourceImage = ({shuffledResource, numberPool}) => {
     const dotsCount = dotsMap.hasOwnProperty(number) ? dotsMap[number] : null;
     const customStyle = (number == 10 || number == 11 || number ==12) ? styles.alignedLeft 
                       :styles.alignedRight;
-    return Array.from({length:dotsCount},(i)=> (<View key={i} style={[styles.dot, customStyle, dotsCount == 5 && styles.redBackground]}/>))
+    return Array.from({length:dotsCount}, (_, i) => (<View key={i} style={[styles.dot, customStyle, dotsCount == 5 && styles.redBackground]}/>))
   }
   
   const renderResourceImage = (resource, number) => {
     const src = imageSrc(resource);
     const customStyle = (number == 2 ? styles.left4px : (number == 6 || number == 8 || number == 9) && styles.left10px ) 
-    return <ImageBackground source={src} style={styles.image}>
+    return <ImageBackground source={src} style={styles.image} >
       {resource != "Desert" && <View style={styles.numberBackground}>
         <Text style={[styles.numberText, customStyle]}> {number} </Text>
         {numberToDots(number)}
-      </View> }
+        </View> }
     </ImageBackground>
   }
 
   return(
-    resources.length!==0 && numberPool.length!==0 && <View style={styles.container}>
+    
+    <View style={styles.container}>
+      
         {/* <ImageBackground source={require("../utils/img/background.png")} style={styles.outline} resizeMode='cover'  > */}
           <View style={styles.imageView}>
             {renderResourceImage(resources[0], numberPool[0])}

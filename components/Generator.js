@@ -8,10 +8,13 @@ const Generator = ({shufflePattern}) => {
     const [numberPool, setNumberPool] = useState([]);
 
     useEffect(() => {
+      console.log(shufflePattern,'shuffle pattern')
       if(shufflePattern) {
+        console.log('called')
         const imagePool = resourceGenerator(resources);
         const shuffledResource = shuffle(imagePool);
         const numberPool = shuffle(numbers);
+        //const shuffledNumbers = shuffle(numberPool);
         setNumberPool(numberPool);
         setShuffleResource(shuffledResource);
       }
