@@ -65,7 +65,8 @@ const styles = StyleSheet.create({
   },
   title:{
     textAlign: 'center',
-    marginTop: 20,
+    marginTop: 50,
+    marginBottom: 20,
     fontSize: 20,
     fontWeight: '600',
   },
@@ -75,7 +76,8 @@ const styles = StyleSheet.create({
   },
   base: {
     flex:1,
-    backgroundColor: '#f5fffa'
+    backgroundColor: '#f5fffa',
+    fontFamily: 'Roboto'
   },
   btn: {
     alignItems: 'center',
