@@ -5,7 +5,6 @@ import { View, Text, Image, StyleSheet, ImageBackground } from 'react-native';
 const ResourceImage = ({shuffledResource, numberPool}) => {
 
   const resources = shuffledResource && shuffledResource.filter((resource, i) => resource != "Desert");
-  const numbersToDots = {2: 1, 3: 2, 4: 3, 5: 4, 6: 5, 8:5, 9:4, 10: 3, 11: 2, 12: 1};
   //const numbers = numberPool.map(num => <Text>{num}</Text>);
   const imageSrc = (resource) => {
     let source;
@@ -33,16 +32,28 @@ const ResourceImage = ({shuffledResource, numberPool}) => {
     }
     return source;
   }
+
+  const numberToDots = (number) => {
+    const dotsMap = {2: 1, 3: 2, 4: 3, 5: 4, 6: 5, 8:5, 9:4, 10: 3, 11: 2, 12: 1};
+    const dotsCount = dotsMap.hasOwnProperty(number) ? dotsMap[number] : null;
+    const customStyle = (number == 10 || number == 11 || number ==12) ? styles.alignedLeft 
+                      :styles.alignedRight;
+    return Array.from({length:dotsCount},(i)=> (<View key={i} style={[styles.dot, customStyle, dotsCount == 5 && styles.redBackground]}/>))
+  }
   
   const renderResourceImage = (resource, number) => {
     const src = imageSrc(resource);
-    return <ImageBackground source={src} style={styles.image} >
-      {resource != "Desert" && <Text style={styles.numberText}> {number} </Text>}
+    const customStyle = (number == 2 ? styles.left4px : (number == 6 || number == 8 || number == 9) && styles.left10px ) 
+    return <ImageBackground source={src} style={styles.image}>
+      {resource != "Desert" && <View style={styles.numberBackground}>
+        <Text style={[styles.numberText, customStyle]}> {number} </Text>
+        {numberToDots(number)}
+      </View> }
     </ImageBackground>
   }
 
   return(
-      <View style={styles.container}>
+    resources.length!==0 && numberPool.length!==0 && <View style={styles.container}>
         {/* <ImageBackground source={require("../utils/img/background.png")} style={styles.outline} resizeMode='cover'  > */}
           <View style={styles.imageView}>
             {renderResourceImage(resources[0], numberPool[0])}
@@ -81,8 +92,8 @@ const ResourceImage = ({shuffledResource, numberPool}) => {
   const styles = StyleSheet.create({
 
     image: {
-      width: 60,
-      height: 60,
+      width: 74,
+      height: 74,
       position: 'relative',
       justifyContent: 'center', 
       alignItems: 'center',
@@ -97,18 +108,53 @@ const ResourceImage = ({shuffledResource, numberPool}) => {
       height: '100%',
       flex: 1
     },
-    numberText: {
-      fontWeight: 'bold',
-      color: 'black',
-      position: 'absolute',
-      fontSize: 18,
-      backgroundColor: '#fbe484',
-      borderRadius: 30
-    },
     outline: {
       width: '100%',
       height: '100%',
       flex: 1
+    },
+    numberText: {
+      fontWeight: 'bold',
+      color: 'black',
+      fontSize: 18,
+      textAlign: 'center',
+      bottom: 2,
+      alignItems: 'center',
+      justifyContent: 'center',
+      left: 6
+    },
+    left10px: {
+      left: 10
+    },
+    left4px:{
+      left: 4
+    },  
+    numberBackground: {
+      backgroundColor: '#fbe484',
+      borderRadius: 17,
+      position: 'absolute',
+      width: 34,
+      height: 34,
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'center'
+    },
+    dot:{
+      width:4,
+      height:4,
+      backgroundColor: 'black',
+      borderRadius: 2,
+      marginRight: 1,
+      top: 10,
+    },
+    alignedRight: {
+      right: 10,
+    },
+    redBackground: {
+      backgroundColor: '#ff0000',
+    },
+    alignedLeft: {
+      right: 14
     }
   })
   
