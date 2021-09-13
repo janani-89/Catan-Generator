@@ -44,9 +44,10 @@ const ResourceImage = ({shuffledResource, numberPool, reload}) => {
   const renderResourceImage = (resource, number) => {
     const src = imageSrc(resource);
     const customStyle = (number == 2 ? styles.left4px : (number == 6 || number == 8 || number == 9) && styles.left10px ) 
+    const redText = (number == 6 || number == 8) && styles.redText;
     return <ImageBackground source={src} style={styles.image} >
       {resource != "Desert" && <View style={styles.numberBackground}>
-        <Text style={[styles.numberText, customStyle]}> {number} </Text>
+        <Text style={[styles.numberText, customStyle, redText]}> {number} </Text>
         {numberToDots(number)}
         </View> }
     </ImageBackground>
@@ -155,6 +156,9 @@ const ResourceImage = ({shuffledResource, numberPool, reload}) => {
     redBackground: {
       backgroundColor: '#ff0000',
     },
+    redText: {
+      color: '#ff0000'
+    }, 
     alignedLeft: {
       right: 14
     }
