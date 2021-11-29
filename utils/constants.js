@@ -66,6 +66,8 @@ export const resourceGenerator = (data) => {
   return resourcePool;
 }
 
+//const numerals = [...shuffledNumbers.slice(0, desertIndex), null, ...shuffledNumbers.slice(desertIndex)];
+
 // export const numbers = [
 //   { 
 //     name:'2',
